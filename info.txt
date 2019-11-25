@@ -1,0 +1,55 @@
+
+TODO
+ + effektek szovege
+ - mentes
+ - lista a quest soran elofordulo lapokrol
+ - github
+ + lapok leirasanal figyelembe venni a html kodokat pl: sortores, felkover
+   meg esetleg az effekt leirasnal is
+ - animacio
+ - jatek vege, ranglista
+ - magyar nyelv
+ - loading kepernyo
+ - heroic deeds kepernyon eleg legyen a sorra klikkelni
+
+
+
+Khalkotaurus = Khalkotauroi
+
+
+http://mrpsmythopedia.editme.com/greek-pantheon
+https://www.facebook.com/pg/MrPsMythopedia/photos/?ref=page_internal
+
+
+spartan helmet
+https://www.freepik.com/free-vector/silhouette-spartan-helmet-collection_3272661.htm
+
+oszlopok
+https://www.freepik.com/premium-vector/ancient-rome-architecture-column-vector-icons_3406282.htm
+
+ikonok
+https://www.123freevectors.com/old-vector-pack-of-ancient-greek-designs/
+
+baberkoszoru
+https://imgbin.com/png/ju1BdZAX/apollo-artemis-symbol-greek-mythology-laurel-wreath-png
+
+https://stackoverflow.com/questions/53240610/how-to-make-simple-star-rating
+
+
+Angularjs animacio
+https://www.youtube.com/watch?v=r5g5foLA0UI&list=PL4cUxeGkcC9gsJS5QgFT2IvWIX78dV3_v&index=20
+
+
+
+UI otlet
+----------------
+
+bal oldalt a sajat statjaink
+  katonak
+  kincsek
+  hatralevo lapok szama
+  sikertelen lapok szama
+  megynyert lapok szama
+
+jobb oldalt 
+

@@ -1,0 +1,496 @@
+.text-center {
+  text-align: center;
+}
+
+.image-number {
+  font-size: 135%;
+  font-weight: 500;
+  /* padding: 0 0 0 5px; */
+  /* vertical-align: middle; */
+}
+
+body {
+  background-image: url("../img/bg.png");
+  background-color: rgb(67,57,77,1);  
+  background-repeat: repeat-x;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+button {
+  padding:0.35em 1.2em;
+  border: 0.1em solid #000;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  text-decoration:none;
+  font-family: 'Roboto', sans-serif;
+  font-weight:300;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
+  background-color: transparent;
+}
+button:hover {
+  color: #000000;
+  background-color: #fff;  
+}
+
+.panel {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 10px 10px 30px 10px;
+  background-color: rgba(217, 240, 240, 0.8);
+  background-color: rgba(151, 197, 199, 0.8);
+}
+
+
+.menu-panel {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 15px;
+  /* background-color: rgba(217, 240, 240, 0.8); */
+}
+.menu-panel .menubar {
+  margin: 15px;
+}
+
+img.text-middle {
+  vertical-align: middle;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.flex-box {
+  margin: 5px;
+}
+
+
+.heroic-panel {
+  padding: 15px;
+}
+.heroicdeed-desc {
+  margin-bottom: 15px;
+}
+.heroicdeed-container {
+  display: flex;
+  margin-bottom: 7px;
+  align-items: center;
+}
+.heroicdeed-container:hover {
+  background-color: #56bac3;
+}
+.heroicdeed-star {
+  width: 120px;
+  margin-right: 10px;
+}
+.heroicdeed-text {
+  width: 470px;
+}
+.heroic-panel .end-row {
+  margin-top: 20px;
+}
+
+
+.main-panel {
+  margin: 0 auto;
+}
+.main-panel .stat-row {
+  margin: 15px 0 25px 0;
+}
+.main-panel .stat-box {
+  width: 50px;
+  margin-right: 20px;
+  text-align: center;
+}
+.main-panel .end-row {
+  margin-top: 20px;
+}
+
+.quest-panel {
+  padding: 15px;
+}
+
+.infobar {
+  padding: 10px;
+  list-style-type: none;
+  text-align: center;
+}
+.infobar-img {
+  vertical-align: middle;
+  /* padding-right: 5px; */
+}
+.infobar-nav-item {
+  display: inline-block;
+  width: 60px;
+  text-align: center;
+}
+
+.quest-menu {
+}
+.quest-menuitem {
+  width: 150px;
+}
+.quest-treasures {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+.quest-treasures img {
+  vertical-align: middle;
+}
+.quest-treasure-button {
+  margin: 0 10px;
+}
+.quest-effects {
+  margin: 15px 0;
+}
+.quest-effects > div {
+  padding: 5px 0;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  width: 360px;
+  background-color: #9aa8a5;
+  margin: 10px 10px;
+  padding: 3px;
+  border: 2px solid #433b4c;
+  border-radius: 10px;
+}
+.card-name {
+  font-size: 120%;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+  padding: 2px;
+}
+.card-negative-head {
+  color: #9b0709;
+}
+.card-positive-head {
+  color: #0c560c;
+}
+.card-content {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 360px;
+  height: 238px;
+}
+.card-leveldata {
+  width: 360px;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+}
+.card-leveldata .row {
+  display: flex;
+  margin-bottom: 5px;
+}
+.card-leveldata .row:hover {
+  background-color: #433b4c;
+}
+.card-leveldata .row:hover .level{
+  visibility: visible;
+}
+.card-leveldata .level {
+  flex: 1;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  visibility: hidden;
+}
+.card-leveldata .ability {
+  width: 30px;
+  height: 30px;
+  background-color: #433b4c;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+}
+
+.card-stat {
+  display: flex;
+  font-size: 120%;
+  margin-bottom: 5px;
+}
+.card-stat > div {
+  vertical-align: middle;
+  flex: 1;
+  text-align: center;
+}
+.card-stat img {
+  vertical-align: middle;
+}
+
+.card-desc {
+  background-color: #97c5c7;
+  padding: 10px;
+}
+
+.card-commandbar {
+  margin-top: 20px;
+}
+.card-commandbar .row {
+  display: flex;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+.card-commandbar .row > div {
+  flex: 1;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 110%;
+  font-weight: 500;
+  height: 35px;
+}
+.card-commandbar .row img {
+  vertical-align: middle;
+  padding-right: 5px;
+}
+.card-commandbar button {
+  width: 80px;
+}
+
+.card-resultbar {
+  padding-top: 30px;
+  text-align: center;
+  font-size: 120%;
+  min-height: 80px;
+}
+.card-resultbar .success {
+  color: #0c560c;
+}
+.card-resultbar .failed {
+  color: #9b0709;
+}
+
+
+.result-panel {
+  width: 400px;
+  margin: 0 auto;
+}
+.result-panel-stat {
+  display: flex;
+  justify-content: center;
+  font-size: 130%;
+  font-weight: 500;
+  margin: 15px 0 15px 0;
+  text-align: center;
+}
+.result-panel-stat img {
+  vertical-align: middle;
+}
+.result-panel-stat > div {
+  height: 45px;
+  margin-right: 8px;
+  line-height: 45px;
+  vertical-align: middle;
+}
+.result-panel-vs {
+  display: flex;
+  justify-content: center;
+}
+.result-panel-vs img {
+  vertical-align: middle;
+}
+.result-panel-vs > div {
+  width: 50px;
+  vertical-align: middle;
+  font-size: 120%;
+  text-align: center;
+}
+.result-panel-vs > div:nth-child(2) {
+  min-height: 70px;
+  line-height: 70px;
+}
+.result-panel-result {
+  text-align: center;
+  font-size: 120%;
+  font-weight: 500;
+  margin-top: 20px;
+}
+.result-panel-result .damage {
+  font-size: 140%;
+  font-weight: 500;
+}
+.result-panel-result .success {
+  color: #0c560c;
+}
+.result-panel-result .failed {
+  color: #9b0709;
+}
+
+
+.questend-panel {}
+.questend-panel-row {
+  margin: 20px 0;
+}
+.questend-panel-orpheus {
+  margin-bottom: 20px;
+  text-align: center;
+}
+/* Custom radio button: https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
+/* The label container */
+.questend-panel .orpheus-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Hide the browser's default radio button */
+.questend-panel .orpheus-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+/* Create a custom radio button */
+.questend-panel .orpheus-container .orpheus-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+/* On mouse-over, add a grey background color */
+.questend-panel .orpheus-container:hover input ~ .orpheus-checkmark {
+  background-color: #ccc;
+}
+/* When the radio button is checked, add a blue background */
+.questend-panel .orpheus-container input:checked ~ .orpheus-checkmark {
+  background-color: #2196F3;
+  background-color: #56bac3;
+  background-color: #fff;
+}
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.questend-panel .orpheus-container .orpheus-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the indicator (dot/circle) when checked */
+.questend-panel .orpheus-container input:checked ~ .orpheus-checkmark:after {
+  display: block;
+}
+/* Style the indicator (dot/circle) */
+.questend-panel .orpheus-container .orpheus-checkmark:after {
+ top: 8px;
+ left: 8px;
+ width: 10px;
+ height: 10px;
+ border-radius: 50%;
+ background: white;
+ background: #56bac3;
+}
+
+
+/* Forras: https://www.w3schools.com */
+.tooltip {
+  /* position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; */
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* Forras: https://www.w3schools.com/howto/howto_css_modals.asp */
+.messagebox {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+.messagebox-content {
+  background-color: #fefefe;
+  background-color: #97c5c7;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 2px solid #888;
+  width: 400px;
+}
+
+
+ /* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.modal-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 
