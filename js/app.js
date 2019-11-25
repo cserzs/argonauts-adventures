@@ -1,4 +1,4 @@
-var app = angular.module('EuropeGame', ['ngSanitize', 'growlNotifications']);
+var app = angular.module('EuropeGame', ['ngSanitize']);
 
 app.filter('reverse', function() {
     return function(items) {
@@ -13,7 +13,6 @@ app.controller('GameController', ['$scope', 'Game',
         $scope.Game = Game;
         $scope.Gamestate = Game.Statemanager.states;
 
-        // Game.startNew();
         Game.Statemanager.show("menuscreen");
     }
 ]);

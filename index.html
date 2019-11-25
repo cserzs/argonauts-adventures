@@ -7,15 +7,10 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <!--<link rel="stylesheet" href="lib/pure-min.css">-->
     <link rel="stylesheet" href="css/stilusok.css">
-    <link rel="stylesheet" href="css/growl-style.css">
+    <!-- <link rel="stylesheet" href="css/growl-style.css"> -->
     <script src="lib/random-0.26.js"></script>
 </head>
 <body ng-controller="GameController">
-
-<growl-notifications></growl-notifications>
-<growl-notification>
-    Hello world
-</growl-notification>
 
 <div ng-if="Gamestate.menuscreen" ng-controller="MenuScreenController" class="menu-panel panel">
     <h1 class="text-center">Argonauts' Adventures</h1>
@@ -66,13 +61,13 @@
         </ul>
 
         <h3>Credits</h3>
-        Programmed by Zsolt Csernai<br/>
         Board game design and gameplay by Mike Arlington<br/>
+        Programmed by Zsolt Csernai<br/>
         <br>
         Pictures from: <br/>
         Created with AngularJs.<br/>
         <br/>
-        <a href="">Source at GitHub</a>
+        <a href="https://github.com/cserzs/argonauts-adventures">Source at GitHub</a>
     </div>
 </div>
 
@@ -302,7 +297,6 @@
 
 <script type="text/javascript" src="lib/angular.js"></script> 
 <script type="text/javascript" src="lib/angular-sanitize.min.js"></script> 
-<script type="text/javascript" src="lib/growl-notifications/angular-growl-notifications.min.js"></script>
 
 <script src="js/utils.js"></script>
 <script src="js/game.js"></script>
