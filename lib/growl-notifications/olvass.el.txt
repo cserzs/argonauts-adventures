@@ -1,2 +1,0 @@
-http://jvandemo.github.io/angular-growl-notifications/docs/
-v2.5.1
