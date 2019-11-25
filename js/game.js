@@ -41,7 +41,7 @@ let Game = {
 
 Game.startNew = function() {
 
-    Game.xp = 3;
+    Game.xp = 0;
     Game.gatheredHeroicDeeds = 0;
     Game.successQuests = 0;
     Game.failedQuests = 0;
@@ -77,7 +77,7 @@ Game.startNew = function() {
     for(let i = 0; i < Gamedata.upgrades.length; i++) {
         Game.heroicdeeds.push(new Game.HeroicDeed(Gamedata.upgrades[i]));
     }
-    Game.heroicdeeds[1].xp = 1;
+    // Game.heroicdeeds[1].xp = 1;
  };
 
 Game.startQuest = function() {
