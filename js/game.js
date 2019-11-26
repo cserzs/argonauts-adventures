@@ -86,8 +86,7 @@ Game.startQuest = function() {
     Game.treasures = [];
     Game.effects = [];
 
-    Game.maxSoldiers = 12;
-    Game.soldiers = 12;
+    Game.soldiers = Game.maxSoldiers;
     Game.usedSoldiers = 0;
     Game.woundedSoldiers = 0;
 

@@ -106,7 +106,7 @@ Gamedata.cards = [
     {
         id: "typhon",
         name: "Typhon",
-        desc: "Level 3: add Chimera",
+        desc: "<b>Level 3</b>: add Chimera",
         img: "typhon",
         difficult: 10,
         damage: 3,
@@ -244,7 +244,7 @@ Gamedata.cards = [
     {
         id: "charybdis",
         name: "Charybdis",
-        desc: "before combat, you may sacrifice 1 crew to ignore this card",
+        desc: "before combat, you may sacrifice 1 soldier to ignore this card",
         img: "charybdis",
         difficult: 8,
         damage: 2,
@@ -430,7 +430,7 @@ Gamedata.cards = [
     {
         id: "cornucopia",
         name: "Cornucopia",
-        desc: "<b>Single-use</b>: recover 2 crew up to max",
+        desc: "<b>Single-use</b>: recover 2 soldier up to max",
         img: "cornucopia",
         difficult: 6,
         damage: 0,
@@ -536,7 +536,7 @@ Gamedata.cards = [
     {
         id: "ambrosia",
         name: "Ambroisa",
-        desc: "<b>Single-use</b>: recover 3 crew member",
+        desc: "<b>Single-use</b>: recover 3 wounded soldier",
         img: "ambrosia",
         difficult: 7,
         damage: 0,

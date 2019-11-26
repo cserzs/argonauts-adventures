@@ -103,7 +103,7 @@
     <div ng-repeat="hd in heroicdeeds" class="heroicdeed-container">
             <div class="heroicdeed-star">
                 <span ng-repeat="n in [].constructor(hd.cost) track by $index">
-                    <img ng-click="addXp(hd)" ng-src="img/star_{{($index < hd.xp ? 'filled2': 'empty2')}}.png" width="28" height="28" />
+                    <img ng-click="addXp(hd)" ng-src="img/star_{{($index < hd.xp ? 'filled': 'empty')}}.png" width="28" height="28" />
                 </span>
             </div>
             <div class="heroicdeed-text">
@@ -210,7 +210,7 @@
                 <div><img src="img/skull.png" width="32" height="32" title="Damage" />{{task.getDamage()}}</div>
             </div>
 
-            <div class="card-desc">{{task.card.desc}}</div>
+            <div class="card-desc" ng-bind-html="task.card.desc"></div>
 
             <div class="result-panel-stat">
                 <div><img src="img/soldier.png" width="40" height="40" />{{soldiers}}</div>
@@ -280,7 +280,7 @@
                         <div><img src="img/skull.png" width="32" height="32" title="Damage" />{{card.damage}}</div>
                     </div>
     
-                    <div class="card-desc">{{card.desc}}</div>
+                    <div class="card-desc" ng-bind-html="card.desc"></div>
                 </div>    
             </div>
         

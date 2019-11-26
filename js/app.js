@@ -120,7 +120,7 @@ app.controller('QuestController', ['$scope', 'Game',
         $scope.sacrificeCrew = function(task) {
             if (Game.soldiers < 1) return;
             Game.Statemanager.MessageBox.show(function(btnId) {},
-                "Sacrifice Crew", "You sacrifice a crew for " + task.card.name, "Close");
+                "Sacrifice Soldier", "You have sacrificed a soldier for " + task.card.name, "Close");
             Game.sacrificeCrew(task);
         };
         $scope.useTreasure = function(id, task = null) {
