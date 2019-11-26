@@ -1,4 +1,3 @@
-
 let Game = {
     MAX_LEVEL: 6,
 
@@ -36,10 +35,16 @@ let Game = {
         hydraDefeated: false,
         goldenfleeceDefeated: false,
         orpheuslyreDefeated: false
-    }
+    },
+
+    testMode: false,
+    deckName: ""
 };
 
 Game.startNew = function() {
+
+    Game.deckName = "testDeck";
+    Game.deckName = "starterDeck";
 
     Game.xp = 0;
     Game.gatheredHeroicDeeds = 0;
@@ -51,20 +56,8 @@ Game.startNew = function() {
     Game.usedSoldiers = 0;
 
     Game.questDeck = [];
-    // for(let cardid in Gamedata.starterDeck) {
-    //     for(let i = 0; i < Gamedata.starterDeck[cardid]; i++) {
-    //         Game.questDeck.push(Game.Gamedata.getCard(cardid));
-    //     }
-    // }
-
-    // for(let cardid in Gamedata.tutorialDeck) {
-    //     for(let i = 0; i < Gamedata.tutorialDeck[cardid]; i++) {
-    //         Game.questDeck.push(Game.Gamedata.getCard(cardid));
-    //     }
-    // }
-
-    for(let cardid in Gamedata.testDeck) {
-        for(let i = 0; i < Gamedata.testDeck[cardid]; i++) {
+    for(let cardid in Gamedata[Game.deckName]) {
+        for(let i = 0; i < Gamedata[Game.deckName][cardid]; i++) {
             Game.questDeck.push(Game.Gamedata.getCard(cardid));
         }
     }
@@ -77,7 +70,6 @@ Game.startNew = function() {
     for(let i = 0; i < Gamedata.upgrades.length; i++) {
         Game.heroicdeeds.push(new Game.HeroicDeed(Gamedata.upgrades[i]));
     }
-    // Game.heroicdeeds[1].xp = 1;
  };
 
 Game.startQuest = function() {
@@ -106,13 +98,10 @@ Game.startQuest = function() {
     Game.questResult.goldenfleeceDefeated = false;
     Game.questResult.orpheuslyreDefeated = false;
     
-    //  test
-    // Game.questDeck = Game.questDeck.slice(0, 3);
-
-    Game.soldiers = 20;
-    
-    //  test end
-
+    if (Game.testMode) {
+        // Game.questDeck = Game.questDeck.slice(0, 3);
+        Game.soldiers = 20;
+    }
 
     Game.startTurn();
 };

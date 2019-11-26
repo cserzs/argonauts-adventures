@@ -5,7 +5,7 @@ This is an adaptation of the board game [(Your name here) and the argonauts](htt
 [Website](http://www.csernaizsolt.hu/argonauts)
 
 ## TODO
-- [ ] loading screen
+- [x] loading screen
 - [ ] save
 - [ ] highscores
 - [ ] hungarian language

@@ -8,12 +8,27 @@ app.filter('reverse', function() {
 
 app.factory('Game', function() { return Game; });
 
-app.controller('GameController', ['$scope', 'Game',
-    function($scope, Game) {
+
+app.controller('GameController', ['$scope', 'Game', 'preloader',
+    function($scope, Game, preloader) {
+        $scope.isLoaded = false;
+        $scope.isError = false;
+        $scope.errorMessage = "";
+
         $scope.Game = Game;
         $scope.Gamestate = Game.Statemanager.states;
 
-        Game.Statemanager.show("menuscreen");
+        preloader.preloadImages( Gamedata.imageList )
+            .then(function() { init(); },
+                function(param) { 
+                    $scope.errorMessage = param;
+                    $scope.isError = true;
+                });
+
+        let init = function() {
+            $scope.isLoaded = true;
+            Game.Statemanager.show("menuscreen");
+        }
     }
 ]);
 
@@ -100,12 +115,12 @@ app.controller('QuestController', ['$scope', 'Game',
             Game.Statemanager.MessageBox.show(function(btnId) {
                 Game.IgnoreRoll.process();
             },
-            "Trying Ignore", Game.IgnoreRoll.getDesc(), "Bezar");
+            "Trying Ignore", Game.IgnoreRoll.getDesc(), "Close");
         };
         $scope.sacrificeCrew = function(task) {
             if (Game.soldiers < 1) return;
             Game.Statemanager.MessageBox.show(function(btnId) {},
-                "Sacrifice Crew", "You sacrifice a crew for " + task.card.name, "Bezar");
+                "Sacrifice Crew", "You sacrifice a crew for " + task.card.name, "Close");
             Game.sacrificeCrew(task);
         };
         $scope.useTreasure = function(id, task = null) {
@@ -127,7 +142,7 @@ app.controller('QuestController', ['$scope', 'Game',
                 Game.Statemanager.MessageBox.show(function(btnId) {
                     if (btnId == 2) { endTurnProcess(); }
                 },
-                "End of Turn", "Are you sure? There are some unsolved task. The unsolved task will be failed!", "No", "Yes");
+                "End of Turn", "Are you sure?<br/>There are some unsolved task.<br/>The unsolved task will be failed!", "No", "Yes");
             }
         };
         $scope.giveUp = function() {
