@@ -6,6 +6,6 @@ This is an adaptation of the board game [(Your name here) and the argonauts](htt
 
 ## TODO
 - [x] loading screen
-- [ ] save
+- [x] save
 - [ ] highscores
 - [ ] hungarian language
