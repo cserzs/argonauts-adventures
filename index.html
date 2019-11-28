@@ -16,7 +16,7 @@
         <div class="lds-dual-ring"></div>
         <div>Loading...</div>
     </div>
-    <div ng-show="isError">Error loading image!<br/>{{errorMessage}}</div>
+    <div ng-show="isError">Error loading!<br/>{{errorMessage}}</div>
 </div>
 
 <div ng-cloak>
@@ -28,7 +28,7 @@
     </div>
     <div class="flex-container menubar">
         <button ng-click="startNewGame()">New Game</button>
-        <!-- <button ng-click="continueGame()">Continue Game</button> -->
+        <button ng-click="continueGame()" ng-show="canContinue">Continue Game</button>
     </div>
     
     <div>

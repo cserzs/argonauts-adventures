@@ -654,19 +654,19 @@ Gamedata.cards = [
 
 Gamedata.upgrades = [
     {
-        id: "starting_crew_bonus",
+        id: "starting_crew_bonus_1",
         name: "+1 starting crew bonus",
         desc: "You start the quest with +1 crew.",
         cost: 1
     },
     {
-        id: "starting_crew_bonus",
+        id: "starting_crew_bonus_2",
         name: "+1 starting crew bonus",
         desc: "You start the quest with +1 crew.",
         cost: 2
     },
     {
-        id: "starting_crew_bonus",
+        id: "starting_crew_bonus_3",
         name: "+1 starting crew bonus",
         desc: "You start the quest with +1 crew.",
         cost: 3

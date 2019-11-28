@@ -8,9 +8,21 @@ app.filter('reverse', function() {
 
 app.factory('Game', function() { return Game; });
 
+app.factory('Store', function() {
+    let store = {
+        ID: "argonauts",
+        save: function(data) {
+            localStorage.setItem(this.ID, JSON.stringify(data));
+        },
+        getSavedData: function() {
+            return localStorage.getItem(this.ID) ? JSON.parse(localStorage.getItem(this.ID)) : [];
+        }
+    };
+    return store;
+});
 
-app.controller('GameController', ['$scope', 'Game', 'preloader',
-    function($scope, Game, preloader) {
+app.controller('GameController', ['$scope', 'Game', 'preloader', 'Store',
+    function($scope, Game, preloader, Store) {
         $scope.isLoaded = false;
         $scope.isError = false;
         $scope.errorMessage = "";
@@ -19,13 +31,22 @@ app.controller('GameController', ['$scope', 'Game', 'preloader',
         $scope.Gamestate = Game.Statemanager.states;
 
         preloader.preloadImages( Gamedata.imageList )
-            .then(function() { init(); },
-                function(param) { 
-                    $scope.errorMessage = param;
-                    $scope.isError = true;
-                });
+            .then(function() {
+                loadGame();
+            },
+            function(param) { 
+                $scope.errorMessage = param;
+                $scope.isError = true;
+            });
 
-        let init = function() {
+        let loadGame = function() {
+            let data = Store.getSavedData();
+            if (data.length > 0) {
+                Game.load(data);
+            }
+            showMenuScreen();
+        };
+        let showMenuScreen = function() {
             $scope.isLoaded = true;
             Game.Statemanager.show("menuscreen");
         }
@@ -35,10 +56,15 @@ app.controller('GameController', ['$scope', 'Game', 'preloader',
 app.controller('MenuScreenController', ['$scope', 'Game',
     function($scope, Game) {
 
+        $scope.canContinue = Game.isActiveGame;
+
         $scope.startNewGame = function() {
             Game.startNew();
             Game.Statemanager.show("main");
         };
+        $scope.continueGame = function() {
+            Game.Statemanager.show("main");
+        }
     }
 ]);
 
@@ -66,19 +92,23 @@ app.controller('MainController', ['$scope', 'Game',
     }
 ]);
 
-app.controller('HeroicDeedsController', ['$scope', 'Game',
-    function($scope, Game) {
+app.controller('HeroicDeedsController', ['$scope', 'Game', 'Store',
+    function($scope, Game, Store) {
+
+        let changed = false;
 
         $scope.heroicdeeds = Game.heroicdeeds;
-        
         $scope.xp = Game.xp;
 
         $scope.addXp = function(heroicdeed) {
+            if (Game.xp < 1) return;
             Game.spendXp(heroicdeed);
+            changed = true;
             update($scope);
         };
 
         $scope.back = function() {
+            if (changed) Store.save(Game.getDataForSave());
             Game.Statemanager.show("main");
         };
 
@@ -88,8 +118,8 @@ app.controller('HeroicDeedsController', ['$scope', 'Game',
     }
 ]);
 
-app.controller('QuestController', ['$scope', 'Game',
-    function($scope, Game) {
+app.controller('QuestController', ['$scope', 'Game', 'Store',
+    function($scope, Game, Store) {
 
         $scope.treasures = Game.treasures;
         $scope.effects = Game.effects;
@@ -149,6 +179,7 @@ app.controller('QuestController', ['$scope', 'Game',
             Game.Statemanager.MessageBox.show(function(btnId) {
                 if (btnId == 2) {
                     Game.giveUpQuest();
+                    Store.save(Game.getDataForSave());
                     Game.Statemanager.show("main");
                 }
             },
@@ -212,19 +243,8 @@ app.controller('TaskresultController', ['$scope', 'Game',
     }
 ]);
 
-app.controller('QuestEndController', ['$scope', 'Game',
-    function($scope, Game) {
-
-        //  win or lose
-
-        //  close utan
-        //  ha lose:
-        //      jeloljuk, hogy vesztett
-        //  ha win:
-        //      a victory pile-ban levo lapok szintet lepnek
-        //      kap 1 xp-t
-
-        //  ha hydra defeated: +1 xp
+app.controller('QuestEndController', ['$scope', 'Game', 'Store',
+    function($scope, Game, Store) {
 
         $scope.isWin = (Game.questStatus == Game.RESULT_WIN);
         $scope.defeatedCards = Game.victoryPile;
@@ -233,11 +253,6 @@ app.controller('QuestEndController', ['$scope', 'Game',
 
         if (Game.questStatus == Game.RESULT_WIN) {
             $scope.endText = "The quest has been succes!";
-            //  milyen lapok lepnek szintet (mit fog ez okozni)
-            //  kap xp-t
-            //  ha golden_fleece: +1 xp
-            //  ha van orpheus_lyre:
-            //      egy szorny nem lep szintet
         } 
         else $scope.endText = "The quest has been failed!";
 
@@ -246,6 +261,7 @@ app.controller('QuestEndController', ['$scope', 'Game',
 
         $scope.close = function() {
             Game.endQuest($scope.selection.card);
+            Store.save(Game.getDataForSave());
             Game.Statemanager.show("main");
         }
     }

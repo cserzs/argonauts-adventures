@@ -15,6 +15,7 @@ let Game = {
     victoryPile: [],
     discardPile: [],
 
+    isActiveGame: false,
     questStatus: "none",
     tasks: [],
 
@@ -41,10 +42,65 @@ let Game = {
     deckName: ""
 };
 
+Game.getDataForSave = function() {
+    let data = [];
+    data.push(Game.successQuests);
+    data.push(Game.failedQuests);
+    data.push(Game.gatheredHeroicDeeds);
+    data.push(Game.xp);
+    data.push(Game.maxSoldiers);
+
+    let heroicdeeds = [];
+    for(let i = 0; i < Game.heroicdeeds.length; i++) {
+        heroicdeeds.push([Game.heroicdeeds[i].id, Game.heroicdeeds[i].xp]);
+    }
+    data.push(heroicdeeds);
+
+    let cards = [];
+    for(let i = 0; i < Game.questDeck.length; i++) {
+        cards.push([Game.questDeck[i].id, Game.questDeck[i].level]);
+    }
+    data.push(cards);
+
+    return data;
+};
+
+Game.load = function(data) {
+    Game.startNew();
+
+    Game.successQuests = Number(data[0]);
+    Game.failedQuests = Number(data[1]);
+    Game.gatheredHeroicDeeds = Number(data[2]);
+    Game.xp = Number(data[3]);
+    Game.maxSoldiers = Number(data[4]);
+    Game.soldiers = Game.maxSoldiers;
+
+    Game.heroicdeeds = [];
+    for(let i = 0; i < data[5].length; i++) {
+        let id = data[5][i][0];
+        let xp = Number(data[5][i][1]);
+        let hd = new Game.HeroicDeed(id);
+        Game.heroicdeeds.push(hd);
+        hd.xp = xp;
+    }
+
+    Game.questDeck = [];
+    for(let i = 0; i < data[6].length; i++) {
+        let id = data[6][i][0];
+        let level = Number(data[6][i][1]);
+        let card = Game.Gamedata.getCard(id);
+        Game.questDeck.push(card);
+        card.setLevel(level);
+    }
+
+};
+
 Game.startNew = function() {
 
-    Game.deckName = "testDeck";
+    // Game.deckName = "testDeck";
     Game.deckName = "starterDeck";
+
+    Game.isActiveGame = true;
 
     Game.xp = 0;
     Game.gatheredHeroicDeeds = 0;
@@ -52,7 +108,7 @@ Game.startNew = function() {
     Game.failedQuests = 0;
 
     Game.maxSoldiers = 12;
-    Game.soldiers = 12;
+    Game.soldiers = Game.maxSoldiers;
     Game.usedSoldiers = 0;
 
     Game.questDeck = [];
@@ -69,6 +125,10 @@ Game.startNew = function() {
     Game.heroicdeeds = [];
     for(let i = 0; i < Gamedata.upgrades.length; i++) {
         Game.heroicdeeds.push(new Game.HeroicDeed(Gamedata.upgrades[i]));
+    }
+
+    if (Game.testMode) {
+        Game.xp = 2;
     }
  };
 
@@ -169,10 +229,6 @@ Game.addCardToQuest = function(id) {
 };
 
 Game.startTurn = function() {
-    //  huzni 3 lapot
-    //  ha van kozte wrath, akkor +2-t huzni
-    //  aktivalni play abilitiket
-
     let drawNum = Math.min(3, Game.questDeck.length);
 
     Game.tasks = [];
@@ -352,14 +408,19 @@ Game.diceRoll = function() {
     return roll;
 };
 
-Game.spendXp = function(heroicdeed) {
-    if (Game.xp < 1) return;
+Game.spendXp = function(heroicdeed, num = 1) {
     if ( !heroicdeed.canAddXp()) return;
-    Game.xp -= 1;
-    heroicdeed.addXp();
+    
+    Game.xp -= num;
+    if (Game.xp < 0) Game.xp = 0;
+
+    heroicdeed.addXp(num);
+
     if (heroicdeed.isFilled()) {
         switch(heroicdeed.id) {
-            case "starting_crew_bonus":
+            case "starting_crew_bonus_1":
+            case "starting_crew_bonus_2":
+            case "starting_crew_bonus_3":
                 Game.maxSoldiers += 1;
                 break;
             case "add_aegis_of_zeus":
@@ -659,6 +720,13 @@ Game.Util.getLevelData = function(levelData, level) {
     return levelData[currentIndex];
 }
 
+Game.getHeroicDeedById = function(id) {
+    for(let i = 0; i < Game.heroicdeeds.length; i++) {
+        if (Game.heroicdeeds[i].id == id) return Game.heroicdeeds[i];
+    }
+    console.warn("Game.getHeroicDeedById: ismeretlen id: " + id);
+    return null;
+}
 
 //  ==================================================================================================================
 //      Classes
@@ -712,6 +780,13 @@ Game.Card = class {
     isNegative() { return this.hasTag("monster"); }
     isPositive() { return this.hasTag("blessing") || this.hasTag("treasure"); }
     canLevelUp() { return this.level < Game.MAX_LEVEL; }
+    setLevel(n) {
+        if (this.levels.length < 1) return;
+        this.level = n;
+        let index = this.level - 1;
+        this.difficult = this.levels[index][1];
+        this.damage = this.levels[index][2];
+    }
     levelUp() {
         if ( !this.canLevelUp()) return;
         this.level += 1;
@@ -785,8 +860,10 @@ Game.HeroicDeed = class {
         this.cost = template.cost;
         this.xp = 0;
     }
-    addXp() {
-        if (this.xp < this.cost) this.xp += 1;
+    addXp(num) {
+        // if (this.xp < this.cost) this.xp += 1;
+        this.xp += num;
+        if (this.xp > this.cost) this.xp = this.cost;
     }
     canAddXp() { return this.xp < this.cost; }
     isFilled() { return this.xp == this.cost; }
