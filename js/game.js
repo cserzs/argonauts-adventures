@@ -1,10 +1,14 @@
 let Game = {
+    SAVE_VERSION: 1,
     MAX_LEVEL: 6,
 
     RESULT_NONE: "none",
     RESULT_WIN: "win",
     RESULT_LOSE: "lose",
     RESULT_IGNORE: "ignore",
+
+    WIN_SCORE: 10,
+    LOSE_SCORE: -5,
 
     maxSoldiers: 0,
     soldiers: 0,
@@ -28,6 +32,7 @@ let Game = {
     xp: 0,
     successQuests: 0,
     failedQuests: 0,
+    score: 0,
 
     heroicdeeds: [],
 
@@ -44,11 +49,13 @@ let Game = {
 
 Game.getDataForSave = function() {
     let data = [];
+    data.push(Game.SAVE_VERSION);
     data.push(Game.successQuests);
     data.push(Game.failedQuests);
     data.push(Game.gatheredHeroicDeeds);
     data.push(Game.xp);
     data.push(Game.maxSoldiers);
+    data.push(Game.score);    
 
     let heroicdeeds = [];
     for(let i = 0; i < Game.heroicdeeds.length; i++) {
@@ -68,26 +75,33 @@ Game.getDataForSave = function() {
 Game.load = function(data) {
     Game.startNew();
 
-    Game.successQuests = Number(data[0]);
-    Game.failedQuests = Number(data[1]);
-    Game.gatheredHeroicDeeds = Number(data[2]);
-    Game.xp = Number(data[3]);
-    Game.maxSoldiers = Number(data[4]);
+    let version = Number(data[0]);
+    if (version != Game.SAVE_VERSION) {
+        Game.isActiveGame = false;
+        return;
+    }
+    
+    Game.successQuests = Number(data[1]);
+    Game.failedQuests = Number(data[2]);
+    Game.gatheredHeroicDeeds = Number(data[3]);
+    Game.xp = Number(data[4]);
+    Game.maxSoldiers = Number(data[5]);
     Game.soldiers = Game.maxSoldiers;
+    Game.score = Number(data[6]);
 
     Game.heroicdeeds = [];
-    for(let i = 0; i < data[5].length; i++) {
-        let id = data[5][i][0];
-        let xp = Number(data[5][i][1]);
+    for(let i = 0; i < data[7].length; i++) {
+        let id = data[7][i][0];
+        let xp = Number(data[7][i][1]);
         let hd = new Game.HeroicDeed(id);
         Game.heroicdeeds.push(hd);
         hd.xp = xp;
     }
 
     Game.questDeck = [];
-    for(let i = 0; i < data[6].length; i++) {
-        let id = data[6][i][0];
-        let level = Number(data[6][i][1]);
+    for(let i = 0; i < data[8].length; i++) {
+        let id = data[8][i][0];
+        let level = Number(data[8][i][1]);
         let card = Game.Gamedata.getCard(id);
         Game.questDeck.push(card);
         card.setLevel(level);
@@ -106,6 +120,7 @@ Game.startNew = function() {
     Game.gatheredHeroicDeeds = 0;
     Game.successQuests = 0;
     Game.failedQuests = 0;
+    Game.score = 0;
 
     Game.maxSoldiers = 12;
     Game.soldiers = Game.maxSoldiers;
@@ -167,6 +182,7 @@ Game.startQuest = function() {
 
 Game.giveUpQuest = function() {
     Game.failedQuests += 1;
+    Game.score += Game.LOSE_SCORE;
     for(let i = 0; i < Game.tasks.length; i++) {
         Game.questDeck.push(Game.tasks[i].card);
     }
@@ -181,6 +197,7 @@ Game.giveUpQuest = function() {
 Game.endQuest = function(selectedCard) {
     if (Game.questStatus == Game.RESULT_WIN) {
         Game.successQuests += 1;
+        Game.score += Game.WIN_SCORE;
         for(let i = 0; i < Game.victoryPile.length; i++) {
             if (selectedCard == Game.victoryPile[i]) continue;
             Game.victoryPile[i].levelUp();
@@ -188,6 +205,7 @@ Game.endQuest = function(selectedCard) {
     }
     else {
         Game.failedQuests += 1;
+        Game.score += Game.LOSE_SCORE;
     }
 
     //  lapokat visszarakni

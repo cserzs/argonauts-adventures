@@ -77,6 +77,7 @@ app.controller('MainController', ['$scope', 'Game',
         $scope.soldiers = Game.maxSoldiers;
         $scope.gatheredHeroicDeeds = Game.gatheredHeroicDeeds;
         $scope.xp = Game.xp;
+        $scope.score = Game.score;
 
         $scope.showHeroicDeeds = function() {
             Game.Statemanager.show("heroicdeeds");

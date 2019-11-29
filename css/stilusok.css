@@ -116,12 +116,15 @@ img.text-middle {
   margin: 0 auto;
 }
 .main-panel .stat-row {
-  margin: 15px 0 25px 0;
+  margin: 15px 0 10px 0;
 }
 .main-panel .stat-box {
   width: 50px;
   margin-right: 20px;
   text-align: center;
+}
+.main-panel .score {
+  margin-bottom: 20px;
 }
 .main-panel .end-row {
   margin-top: 20px;
