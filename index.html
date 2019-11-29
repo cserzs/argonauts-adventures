@@ -86,10 +86,13 @@
         <div class="flex-box stat-box"><img class="text-middle" src="img/pile_victory.png" width="48" height="48" title="Number of success quests"/><span class="image-number">{{successQuests}}</span></div>
         <div class="flex-box stat-box"><img class="text-middle" src="img/pile_discard.png" width="48" height="48" title="Number of failed quests" /><span class="image-number">{{failedQuests}}</span></div>
         <div class="flex-box stat-box"><img class="text-middle" src="img/soldier.png" width="48" height="48" title="Number of soldiers" /><span class="image-number">{{soldiers}}</span></div>
-        <div class="flex-box stat-box"><img class="text-middle" src="img/star_filled.png" width="48" height="48" title="Gathered heroic deeds" /><span class="image-number">{{gatheredHeroicDeeds}} / {{xp}}</span></div>
+        <div class="flex-box stat-box"><img class="text-middle" src="img/star_filled.png" width="48" height="48" title="Max / Gathered heroic deeds" /><span class="image-number">{{winlimit}} / {{gatheredHeroicDeeds}}</span></div>
     </div>
     <div class="flex-container">
-        <div class="flex-box score">Score: {{score}}</div>
+        <div class="flex-box">Score: {{score}}</div>
+    </div>
+    <div class="flex-container spendxp">
+        <div class="flex-box score">You can spend {{xp}} point(s) to Heroic Deed!</div>
     </div>
     <div class="flex-container">
         <button class="flex-box" ng-click="startQuest()">Start Quest</button>

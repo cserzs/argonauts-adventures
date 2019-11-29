@@ -119,11 +119,11 @@ img.text-middle {
   margin: 15px 0 10px 0;
 }
 .main-panel .stat-box {
-  width: 50px;
+  width: 60px;
   margin-right: 20px;
   text-align: center;
 }
-.main-panel .score {
+.main-panel .spendxp {
   margin-bottom: 20px;
 }
 .main-panel .end-row {

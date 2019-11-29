@@ -75,6 +75,7 @@ app.controller('MainController', ['$scope', 'Game',
         $scope.failedQuests = Game.failedQuests;
     
         $scope.soldiers = Game.maxSoldiers;
+        $scope.winlimit = Game.WIN_LIMIT;
         $scope.gatheredHeroicDeeds = Game.gatheredHeroicDeeds;
         $scope.xp = Game.xp;
         $scope.score = Game.score;

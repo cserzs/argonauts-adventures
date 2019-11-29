@@ -2,13 +2,14 @@ let Game = {
     SAVE_VERSION: 2,
     MAX_LEVEL: 6,
 
+    WIN_LIMIT: 18,
+    WIN_SCORE: 10,
+    LOSE_SCORE: -5,
+
     RESULT_NONE: "none",
     RESULT_WIN: "win",
     RESULT_LOSE: "lose",
     RESULT_IGNORE: "ignore",
-
-    WIN_SCORE: 10,
-    LOSE_SCORE: -5,
 
     maxSoldiers: 0,
     soldiers: 0,
