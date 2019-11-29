@@ -57,7 +57,7 @@ button:hover {
   width: 1280px;
   margin: 0 auto;
   padding: 10px 10px 30px 10px;
-  background-color: rgba(217, 240, 240, 0.8);
+  /* background-color: rgba(217, 240, 240, 0.8); */
   background-color: rgba(151, 197, 199, 0.8);
 }
 
@@ -420,6 +420,23 @@ img.text-middle {
  background: white;
  background: #56bac3;
 }
+
+
+.endgame-panel {
+  font-size: 125%;
+  font-weight: 500;
+  text-align: center;
+}
+.endgame-panel .praise-row {
+  margin: 20px 0;
+}
+.endgame-panel .row {
+  margin: 5px 0;
+}
+.endgame-panel .end-row {
+  margin: 25px 0 10px 0;
+}
+
 
 
 /* Forras: https://www.w3schools.com */

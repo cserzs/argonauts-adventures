@@ -45,7 +45,8 @@ let Game = {
     },
 
     testMode: false,
-    deckName: ""
+    // deckName: "testDeck",
+    deckName: "starterDeck"
 };
 
 Game.getDataForSave = function() {
@@ -112,9 +113,6 @@ Game.load = function(data) {
 
 Game.startNew = function() {
 
-    // Game.deckName = "testDeck";
-    Game.deckName = "starterDeck";
-
     Game.isActiveGame = true;
 
     Game.xp = 0;
@@ -144,9 +142,15 @@ Game.startNew = function() {
     }
 
     if (Game.testMode) {
-        Game.xp = 2;
+        // Game.xp = 2;
+        Game.maxSoldiers = 20;
+        Game.soldiers = Game.maxSoldiers;
     }
  };
+
+Game.endGame = function() {
+    Game.isActiveGame = false;
+};
 
 Game.startQuest = function() {
     Game.questStatus = Game.RESULT_NONE;

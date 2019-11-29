@@ -16,6 +16,9 @@ app.factory('Store', function() {
         },
         getSavedData: function() {
             return localStorage.getItem(this.ID) ? JSON.parse(localStorage.getItem(this.ID)) : [];
+        },
+        clear: function() {
+            localStorage.removeItem(this.ID);
         }
     };
     return store;
@@ -182,7 +185,12 @@ app.controller('QuestController', ['$scope', 'Game', 'Store',
                 if (btnId == 2) {
                     Game.giveUpQuest();
                     Store.save(Game.getDataForSave());
-                    Game.Statemanager.show("main");
+                    if (Game.gatheredHeroicDeeds >= Game.WIN_LIMIT) {
+                        Game.Statemanager.show("endgame");
+                    }
+                    else {
+                        Game.Statemanager.show("main");
+                    }
                 }
             },
             "Give up quest", "Are you sure you want to end the quest?", "No", "Yes");
@@ -264,25 +272,26 @@ app.controller('QuestEndController', ['$scope', 'Game', 'Store',
         $scope.close = function() {
             Game.endQuest($scope.selection.card);
             Store.save(Game.getDataForSave());
-            Game.Statemanager.show("main");
+            if (Game.gatheredHeroicDeeds >= Game.WIN_LIMIT) {
+                Game.Statemanager.show("endgame");
+            }
+            else {
+                Game.Statemanager.show("main");
+            }
         }
     }
 ]);
 
-app.controller('QuestWinController', ['$scope', 'Game',
-    function($scope, Game) {
+app.controller('EndGameController', ['$scope', 'Game', 'Store',
+    function($scope, Game, Store) {
+        $scope.successQuests = Game.successQuests;
+        $scope.failedQuest = Game.failedQuests;
+        $scope.score = Game.score;
 
         $scope.close = function() {
-            Game.Statemanager.show("main");
-        }
-    }
-]);
-
-app.controller('QuestLoseController', ['$scope', 'Game',
-    function($scope, Game) {
-
-        $scope.close = function() {
-            Game.Statemanager.show("main");
+            Store.clear();
+            Game.endGame();
+            Game.Statemanager.show("menuscreen");
         }
     }
 ]);

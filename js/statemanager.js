@@ -14,12 +14,8 @@ Game.Statemanager = {
         quest_win: false,
         quest_lose: false,
 
-        // taskresult: false,
-        // questwin: false,
-        // questlose: false,
+        endgame: false,
     },
-
-
 
     startState: "",
     prevWindow: "",

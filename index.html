@@ -295,6 +295,17 @@
     
 </div>
 
+<div ng-if="Gamestate.endgame" ng-controller="EndGameController" class="endgame-panel panel">
+    <h2>Congratulations!</h2>
+    <div class="praise-row">Your glory and act of your heroic deeds will remain in history!</div>
+    <div class="row">You've performed {{successQuests}} succesful quests.</div>
+    <div class="row">There was {{failedQuest}} failed attempt.</div>
+    <div class="row">Score: {{score}}</div>
+    <div class="end-row">
+        <button ng-click="close()">Back</button>
+    </div>
+</div>
+
 <div ng-if="Gamestate._messageBox" ng-controller="MessageBoxController" class="messagebox">
     <div class="messagebox-content">
         <p><b>{{title}}</b></p>
