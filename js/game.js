@@ -1,5 +1,5 @@
 let Game = {
-    SAVE_VERSION: 1,
+    SAVE_VERSION: 2,
     MAX_LEVEL: 6,
 
     RESULT_NONE: "none",
@@ -93,7 +93,7 @@ Game.load = function(data) {
     for(let i = 0; i < data[7].length; i++) {
         let id = data[7][i][0];
         let xp = Number(data[7][i][1]);
-        let hd = new Game.HeroicDeed(id);
+        let hd = Game.Gamedata.getHeroicDeed(id);
         Game.heroicdeeds.push(hd);
         hd.xp = xp;
     }
@@ -708,7 +708,16 @@ Game.Gamedata.getCard = function(id) {
     }
     console.warn("Game.Gamedata.getCard, ismeretlen id: " + id);
     return null;
-}
+};
+Game.Gamedata.getHeroicDeed = function(id) {
+    for(let i = 0; i < Gamedata.upgrades.length; i++) {
+        if (Gamedata.upgrades[i].id == id) {
+            return new Game.HeroicDeed(Gamedata.upgrades[i]);
+        }
+    }
+    console.warn("Game.Gamedata.getHeroicDeed, ismeretlen id: " + id);
+    return null;
+};
 
 Game.Gamedata.getEffect = function(id) {
     for(let i = 0; i < Gamedata.effects.length; i++) {
